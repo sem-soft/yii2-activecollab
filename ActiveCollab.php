@@ -192,11 +192,15 @@ class ActiveCollab extends Component
     {
 	$this->flushRequestErrors();
 	
-	if ($this->client === false) {    
-	    return false;
+	if (!in_array($type, self::getHttpTypes())) {
+	    throw new \yii\base\InvalidCallException("Неверный тип HTTP-запроса!");
 	}
 	
 	try {
+	    
+	    if ($this->client === false) {
+		return [];
+	    }
 	    
 	    $result = $this->client->$type($path, $params)->getJson();
 	    
@@ -269,6 +273,22 @@ class ActiveCollab extends Component
 	    AppException::CONFLICT		=> 'Возник конфликт при обращении к API',
 	    AppException::OPERATION_FAILED	=> 'Действие или метод API временно не доступно',
 	    AppException::UNAVAILABLE		=> 'Сервис API временно не доступен',
+	];
+    }
+    
+    /**
+     * Возвращает список возможных HTTP-запросов
+     * @return array
+     */
+    protected static function getHttpTypes()
+    {
+	return [
+	    self::REQUEST_TYPE_DELETE,
+	    self::REQUEST_TYPE_GET,
+	    self::REQUEST_TYPE_HEAD,
+	    self::REQUEST_TYPE_PATCH,
+	    self::REQUEST_TYPE_POST,
+	    self::REQUEST_TYPE_PUT
 	];
     }
 }
