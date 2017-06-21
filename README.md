@@ -12,6 +12,11 @@ In configuration file do
     ...
     'ac'	=>  [
         'class' => \sem\activecollab\ActiveCollab::className(),
+        'companyName'   =>	'Студия Олега Чулакова',
+	      'applicationName'	=> 'CHRM',
+	      'user'  =>	'user@name.ru',
+	      'password'	=>  'password',
+	      'acUrl' =>	'url-to-ac-self-hosted'
     ],
     ...
   ],
@@ -19,3 +24,9 @@ In configuration file do
  ?>
  ```
  Use as simple component
+ ```php
+<?php
+	print_r(\Yii::$app->ac->request('projects', [], 'post'));
+	print_r(\Yii::$app->ac->requestErrors);
+?>
+ ```
