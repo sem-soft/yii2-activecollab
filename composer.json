@@ -1,0 +1,21 @@
+{
+    "name": "sem-soft/yii2-activecollab",
+    "description": "Yii2 component for ActiveCollab API",
+    "license": "BSD 3-Clause",
+    "type": "yii2-components",
+    "require": {
+        "php": ">=5.4.0",
+        "activecollab/activecollab-feather-sdk": "^3.0"
+    },
+    "authors": [
+        {
+            "name": "Samsonov Vladimir",
+            "email": "samsonov.sem@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "sem\\activecollab\\": ""
+        }
+    }
+}
